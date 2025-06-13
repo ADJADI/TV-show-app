@@ -11,10 +11,11 @@ const fetchData = async (endPoint) => {
       },
     });
     const response = await data.json();
-    return response.results;
+    return response;
   } catch (error) {
     return error.message;
   }
 };
 
 export { fetchData };
+//  recompartimenter les utils
