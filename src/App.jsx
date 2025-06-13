@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react"
-import { fetchData } from "./utils/fetchData"
-import Card from "./components/reusable/Card"
+import { BrowserRouter, Route, Routes } from 'react-router';
+import Home from "./pages/Home";
+import AppLayout from "./layout/AppLayout";
+import { ROUTES } from "./config/route";
+import MoreDetails from "./pages/MoreDetails";
 
 function App() {
-  const [tvShowList, setTvShowList] = useState([])
-  const endPoint = "/tv/popular"
-  const fetchPopularTvShow = async () => {
-    setTvShowList(await fetchData(endPoint))
-  };
-
-  useEffect(() => {
-    fetchPopularTvShow()
-  }, [])
 
 
-  console.log(tvShowList)
   return (
-    <div><Card img="http://plop.fr" title="holla" /></div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<AppLayout />}>
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.MOREDETAIL} element={<MoreDetails />} />
+        </Route>
+      </Routes>
+    </BrowserRouter >
   )
 }
 
